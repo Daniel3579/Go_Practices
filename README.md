@@ -45,6 +45,9 @@ helloapi
   go.mod
   go.sum
   helloapi.app
+  README.md
+  Screenshot.png
 ```
 
-
+Скриншот работы программы
+![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/Screenshot%202025-09-09%20at%208.12.51%E2%80%AFPM.png)
