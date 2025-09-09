@@ -45,8 +45,8 @@ helloapi
   go.mod
   go.sum
   helloapi.app
-  README.md
-  Screenshot.png
+README.md
+Screenshot.png
 ```
 
 Скриншот работы программы
