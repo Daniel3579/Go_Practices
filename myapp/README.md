@@ -26,8 +26,6 @@ go run ./cmd/myapp
 ```
 myapp
 ├── README.md
-├── Screenshot Logs.png
-├── Screenshot Requests.png
 ├── bin
 │   └── myapp.app
 ├── cmd
@@ -40,12 +38,15 @@ myapp
 │       ├── app.go
 │       └── handlers
 │           └── ping.go
+├── screenshots
+│   ├── Screenshot Logs.png
+│   └── Screenshot Requests.png
 └── utils
     ├── httpjson.go
     └── logger.go
 ```
 
 Скриншот работы программы
-![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/myapp/Screenshot%20Requests.png)
+![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/myapp/screenshots/Screenshot%20Requests.png)
 Скриншот отображение логов
-![Logs](https://github.com/Daniel3579/Go_Practices/blob/main/myapp/Screenshot%20Logs.png)
+![Logs](https://github.com/Daniel3579/Go_Practices/blob/main/myapp/screenshots/Screenshot%20Logs.png)
