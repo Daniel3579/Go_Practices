@@ -42,14 +42,15 @@ APP_PORT="8081" ./helloapi.app
 ```
 helloapi
 ├── README.md
-├── Screenshot 2025-09-09 at 8.12.51 PM.png
 ├── cmd
 │   └── server
 │       └── main.go
 ├── go.mod
 ├── go.sum
-└── helloapi.app
+├── helloapi.app
+└── screenshots
+    └── Screenshot.png
 ```
 
 Скриншот работы программы
-![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/helloapi/Screenshot%202025-09-09%20at%208.12.51%E2%80%AFPM.png)
+![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/helloapi/screenshots/Screenshot.png)
