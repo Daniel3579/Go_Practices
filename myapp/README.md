@@ -1,55 +1,51 @@
 # Коляда Даниил
 
-Развернули рабочее окружение Go на MacOS, создали минимальный HTTP-сервис на net/http, подключили и использовали внешнюю зависимость, собрали и проверили приложение.
-- Установили Go и Git, проверили версии.
-- Инициализировали модуль Go в новом проекте.
-- Реализовали HTTP-сервер с маршрутами /hello (текст) и /user (JSON).
-- Подключили внешнюю библиотеку (генерация UUID) и использовали её в /user.
-- Запустили и проверили ответы curl/браузером.
-- Собрали бинарник .app и подготовить README и отчёт.
+Изучили структуру Go-проекта, создали минимальный скелет приложения и запустили его
 
-Команда запуска:
+Запустить можно командой:
 ```bash
-go run ./cmd/server
+go run ./cmd/myapp
 ```
+Или же запустив само приложение `myapp.app`
 
-Команда сборки под Mac:
-```bash
-go build -o helloapi.app ./cmd/server
-```
+---
 
-Команда сборки под Windows:
-```bash
-go build -o helloapi.exe ./cmd/server
-```
+- Конфигурационные файлы такие как `config.yaml` или `config.json`, следует разместить в папке `configs/`.
 
-Команда для настройки переменной окружения в Windows:
-```bash
-$env:APP_PORT="8081"
-```
+- Вся документация проекта, включая инструкции по установке и использованию, должна находиться в папке `docs/`.
 
-Команда для настройки переменной окружения в MacOS:
-```bash
-export APP_PORT="8081"
-```
+- Для интеграционных тестов и тестирования функциональности нужно создать папку `test/`.
 
-Команда для запуска скомпилированной программы с кастомным портом:
-```bash
-APP_PORT="8081" ./helloapi.app
-```
+- Скрипты сборки и автоматизации такие как Makefile, следует разместить в папке `scripts/`.
+
+- Все контракты API должны находиться в папке `api/`. Это позволит четко отделить спецификации от основной логики приложения и упростит процесс их обновления. Хранение API-контрактов в отдельной папке также способствует лучшему пониманию взаимодействия между компонентами системы.
+
+---
 
 Дерево проекта:
 ```
-helloapi
-  cmd
-    server
-      main.go
-  go.mod
-  go.sum
-  helloapi.app
-README.md
-Screenshot.png
+myapp
+├── README.md
+├── Screenshot Logs.png
+├── Screenshot Requests.png
+├── bin
+│   └── myapp.app
+├── cmd
+│   └── myapp
+│       └── main.go
+├── go.mod
+├── go.sum
+├── internal
+│   └── app
+│       ├── app.go
+│       └── handlers
+│           └── ping.go
+└── utils
+    ├── httpjson.go
+    └── logger.go
 ```
 
 Скриншот работы программы
-![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/Screenshot%202025-09-09%20at%208.12.51%E2%80%AFPM.png)
+![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/myapp/Screenshot%20Requests.png)
+Скриншот отображение логов
+![Logs](https://github.com/Daniel3579/Go_Practices/blob/main/myapp/Screenshot%20Logs.png)
