@@ -52,3 +52,15 @@ curl -X PATCH localhost:8080/tasks/1 \
 curl -X DELETE localhost:8080/tasks/1
 ```
 ![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/prc_http/screenshots/Screenshot_10.png)
+
+```
+curl -i -X POST localhost:8080/tasks \
+-H "Content-Type: application/json" \
+-d '{"title":""}'
+```
+![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/prc_http/screenshots/Screenshot_11.png)
+
+```
+make test
+```
+![Screenshot](https://github.com/Daniel3579/Go_Practices/blob/main/prc_http/screenshots/Screenshot_12.png)
