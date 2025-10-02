@@ -1,5 +1,6 @@
-/bin/
+*/bin/
 /dist/
 /coverage.out
 *.log
 .DS_Store
+.vscode
