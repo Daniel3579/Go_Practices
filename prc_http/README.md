@@ -1,6 +1,6 @@
 # Коляда Даниил
 
-Конфигурация порта была вынесена в переменную окружения [PRC_HTTP_PORT](./prc_http/cmd/server/main.go#L42)
+Конфигурация порта была вынесена в переменную окружения [PRC_HTTP_PORT](./cmd/server/main.go#L42)
 
 ---
 
@@ -18,30 +18,30 @@ make run
 ---
 
 - Был создан
-[Makefile](./prc_http/Makefile)
+[Makefile](./Makefile)
 с целями run, buid, test
 
 - Были созданы
-[юнит-тесты](./prc_http/internal/test/handlers_test.go)
+[юнит-тесты](./internal/test/handlers_test.go)
 для обработчиков
 
-- Набор тестовых запросов лежит в [request.md](./prc_http/requests.md)
+- Набор тестовых запросов лежит в [request.md](./requests.md)
 
 - Были добавлены заголовки CORS в
-[отдельный](./prc_http/internal/api/cors.go)
+[отдельный](./internal/api/cors.go)
 middleware
 
-- [Добавлена](./prc_http/internal/api/handlers.go#L76-L83)
+- [Добавлена](./internal/api/handlers.go#L76-L83)
 валидация длины `title`
 
 - Добавлен метод
-[PATCH](./prc_http/internal/api/handlers.go#L106-L119)
+[PATCH](./internal/api/handlers.go#L106-L119)
 для поля `Done`
 
-- Добавлен метод [DELETE](./prc_http/internal/api/handlers.go#L122-L135)
+- Добавлен метод [DELETE](./internal/api/handlers.go#L122-L135)
 
 - Был
-[сделан](./prc_http/cmd/server/main.go#L55-L81)
+[сделан](./cmd/server/main.go#L55-L81)
 Graceful shutdown через http.Server и контекст
 
 ---
