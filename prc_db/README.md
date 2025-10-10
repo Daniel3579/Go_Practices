@@ -30,21 +30,21 @@ go run .
 ![Screenshot](./screenshots/Screenshot_4.png)
 
 Реализована
-[функция](./repo#L51-L68)
+[функция](./repo.go#L51-L68)
 `ListDone`, возвращающая список задач по параметру `done`
 ```go
 func (r *Repo) ListDone(ctx context.Context, done bool) ([]Task, error)
 ```
 
 Реализована
-[функция](./repo#L70-L88)
+[функция](./repo.go#L70-L88)
 `FindByID`, возвращающая задачу по `id`
 ```go
 func (r *Repo) FindByID(ctx context.Context, id int) (*Task, error)
 ```
 
 Реализована
-[функция](./repo#L90-L117)
+[функция](./repo.go#L90-L117)
 `CreateMany`, производящая массовую вставку с параметрами `titles` и `dones` через транзакцию
 ```go
 func (r *Repo) CreateMany(ctx context.Context, titles []string, dones []bool) error
