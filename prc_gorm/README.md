@@ -20,17 +20,17 @@ ORM (Object–Relational Mapping) — это технология сопоста
 
 ---
 
-### Реализованные эндпоинты
 > [!WARNING]
-> Сервер не запущен
-
-`POST` [my.domain:8080/users](https://google.com)\
-`POST` [my.domain:8080/notes](https://google.com)
-
-`GET` [my.domain:8080/notes/{id}](https://google.com)\
-`GET` [my.domain:8080/notes](https://google.com)\
-`GET` [my.domain:8080/tags](https://google.com)\
-`GET` [my.domain:8080/users](https://google.com)
+> ## Сервер не запущен
+> ### Реализованные эндпоинты
+> | Тип | Адрес | Заголовок | Тело |
+> |-|-|-|-|
+> | POST | my.domain:8080/users | Content-Type: application/json | {"name":"...", "email":"..."} |
+> | POST | my.domain:8080/notes | Content-Type: application/json | {"title":"...", "content":"...", "userId":..., "tags":["...", "..."]} |
+> | GET | my.domain:8080/notes/{id} |
+> | GET | [my.domain:8080/notes](https://google.com) |
+> | GET | [my.domain:8080/tags](https://google.com) |
+> | GET | [my.domain:8080/users](https://google.com) |
 
 ---
 
