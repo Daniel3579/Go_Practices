@@ -1,0 +1,13 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: your_container_name
+    ports:
+      - "external_port:internal_port"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: your_root_username
+      MONGO_INITDB_ROOT_PASSWORD: your_root_password
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
