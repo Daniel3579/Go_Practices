@@ -13,22 +13,21 @@
 ### Основные понятия
 
 1. **Документ:**
-- Аналог строки в таблице, но гораздо гибче
-- Представлен в формате BSON (Binary JSON)
+    - Аналог строки в таблице, но гораздо гибче
+    - Представлен в формате BSON (Binary JSON)
 
 2. **Коллекция:**
-- Набор документов (аналог таблицы в SQL)
-- Нет строгой схемы — в одной коллекции могут лежать документы с разными полями
+    - Набор документов (аналог таблицы в SQL)
+    - Нет строгой схемы — в одной коллекции могут лежать документы с разными полями
 
 3. **База данных:**
-- Логическое объединение коллекций
-- Пример: `prc_mongo` – база для нашего практического задания, внутри коллекция `notes`
+    - Логическое объединение коллекций
 
 4. **Индексы:**
-- Обычный (по одному полю)
-- Составной (по нескольким полям)
-- Уникальный (не допускает дубликатов)
-- TTL (документы удаляются автоматически после заданного времени)
+    - Обычный (по одному полю)
+    - Составной (по нескольким полям)
+    - Уникальный (не допускает дубликатов)
+    - TTL (документы удаляются автоматически после заданного времени)
 
 ---
 
@@ -54,69 +53,73 @@
 ### Настройка конфигурации docker и переменных окружения:
 
 1. Перейдем в папку проекта
-2. Переименуем `docker-compose.yml.example` в `docker-compose.yml`
+2. Переименуем **`docker-compose.yml.example`** в **`docker-compose.yml`**
 3. Настроим файл конфигурации
 
-<details>
-    <summary>Настройка файла конфигурации</summary>
+> [!NOTE]
+> <details>
+> <summary>Настройка файла конфигурации</summary>
+>    
+> 1. Откроем файл
+>
+> 2. Изменим имя контейнера
+>
+> ```
+> container_name: your_container_name
+> ```
+>
+> 3. Установим порты
+>
+> ```
+> ports:
+>       - "external_port:internal_port"
+> ```
+>
+> 4. Зададим имя пользователя и пароль
+>
+> ```
+> MONGO_INITDB_ROOT_USERNAME: your_root_username
+> MONGO_INITDB_ROOT_PASSWORD: your_root_password
+> ```
+>
+> 5. Сохраним изменения
+>
+> </details>
 
-1. Откроем файл
-2. Изменим имя контейнера
-
-```
-container_name: your_container_name
-```
-
-3. Установим порты
-
-```
-ports:
-      - "external_port:internal_port"
-```
-
-4. Зададим имя пользователя и пароль
-
-```
-MONGO_INITDB_ROOT_USERNAME: your_root_username
-MONGO_INITDB_ROOT_PASSWORD: your_root_password
-```
-
-5. Сохраним изменения
-
-</details>
-
-4. Переименуем `.env.example` в `.env`
+4. Переименуем **`.env.example`** в **`.env`**
 5. Настроим файл окружения
 
-<details>
-    <summary>Настройка файла окружения</summary>
-
-1. Откроем файл
-2. Зададим:
-- `username` — то же самое, что и `MONGO_INITDB_ROOT_USERNAME`
-- `password` — то же самое, что и `MONGO_INITDB_ROOT_USERNAME`
-- `address` — адрес сервера, на котором работает контейнер с MongoDB 
-- `port` — то же самое, что и `external_port`
-
-```
-MONGO_URI=mongodb://username:password@address:port
-```
-
-3. Изменим `your_db_name` на имя вашей DB
-
-```
-MONGO_DB=your_db_name
-```
-
-4. Изменим `your_server_port` на порт, на котором будет работать GO сервер
-
-```
-HTTP_ADDR=your_server_port
-```
-
-5. Сохраним изменения
-
-</details>
+> [!NOTE]
+> <details>
+> <summary>Настройка файла окружения</summary>
+>
+> 1. Откроем файл
+>
+> 2. Зададим:
+> - **`username`** — то же самое, что и **`MONGO_INITDB_ROOT_USERNAME`**
+> - **`password`** — то же самое, что и **`MONGO_INITDB_ROOT_USERNAME`**
+> - **`address`** — адрес сервера, на котором работает контейнер с **`MongoDB`**
+> - **`port`** — то же самое, что и **`external_port`**
+>
+> ```
+> MONGO_URI=mongodb://username:password@address:port
+> ```
+>
+> 3. Изменим **`your_db_name`** на имя вашей DB
+>
+> ```
+> MONGO_DB=your_db_name
+> ```
+>
+> 4. Изменим **`your_server_port`** на порт, на котором будет работать GO сервер
+>
+> ```
+> HTTP_ADDR=your_server_port
+> ```
+>
+> 5. Сохраним изменения
+>
+> </details>
 
 ---
 
@@ -141,24 +144,24 @@ go run ./cmd/api
 > ### Реализованные эндпоинты
 > | Тип | Адрес | Заголовок | Тело |
 > |-|-|-|-|
-> | **POST** | my.domain:8080/api/v1/notes | Content-Type: application/json | {"title": "...", "content": "..."} |
-> | **POST** | my.domain:8080/api/v1/notes | Content-Type: application/json | {"title": "...", "content": "...", "expireTime": ...} |
-> | **PATCH** | my.domain:8080/api/v1/notes/{**`id`**} | Content-Type: application/json | {"content": "..."} |
-> | **DELETE** | my.domain:8080/api/v1/notes/{**`id`**} |
-> | **GET** | my.domain:8080/api/v1/notes/{**`id`**} |
-> | **GET** | my.domain:8080/api/v1/notes\?after={**`id`**} |
-> | **GET** | my.domain:8080/api/v1/notes\?q={**`search`**} |
-> | **GET** | my.domain:8080/api/v1/notes\?limit={**`limit`**} |
-> | **GET** | my.domain:8080/api/v1/notes\?skip={**`skip`**} |
-> | **GET** | [my.domain:8080/api/v1/notes/stats](https://google.com) |
-> | **GET** | [my.domain:8080/api/v1/notes](https://google.com) |
+> | POST | my.domain:8080/api/v1/notes | Content-Type: application/json | {"title": "...", "content": "..."} |
+> | POST | my.domain:8080/api/v1/notes | Content-Type: application/json | {"title": "...", "content": "...", "expireTime": ...} |
+> | PATCH | my.domain:8080/api/v1/notes/{**`id`**} | Content-Type: application/json | {"content": "..."} |
+> | DELETE | my.domain:8080/api/v1/notes/{**`id`**} |
+> | GET | my.domain:8080/api/v1/notes/{**`id`**} |
+> | GET | my.domain:8080/api/v1/notes\?after={**`id`**} |
+> | GET | my.domain:8080/api/v1/notes\?q={**`search`**} |
+> | GET | my.domain:8080/api/v1/notes\?limit={**`limit`**} |
+> | GET | my.domain:8080/api/v1/notes\?skip={**`skip`**} |
+> | GET | [my.domain:8080/api/v1/notes/stats](https://google.com) |
+> | GET | [my.domain:8080/api/v1/notes](https://google.com) |
 
 ---
 
 ### Тестирование
 
 <details>
-    <summary>Результаты тестирования</summary>
+<summary>Результаты тестирования 👈🏻</summary>
 
 ```
 curl -i -X POST localhost:8080/api/v1/notes \
@@ -168,39 +171,53 @@ curl -i -X POST localhost:8080/api/v1/notes \
             "content": "Hello Mongo!"
         }'
 ```
-![Screenshot](./screenshots/Screenshot_1.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_1.png" style="width: 62%" >
+</p>
 
 ```
 curl -i localhost:8080/api/v1/notes\?limit=2\&skip=2
 ```
-![Screenshot](./screenshots/Screenshot_2.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_2.png" style="width: 62%" >
+</p>
 
 ```
 curl -i localhost:8080/api/v1/notes/6926b207ed6d88dd9154e3f9
 ```
-![Screenshot](./screenshots/Screenshot_3.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_3.png" style="width: 62%" >
+</p>
 
 ```
 curl -i -X PATCH localhost:8080/api/v1/notes/6926b207ed6d88dd9154e3f9 \
     -H 'Content-Type: application/json' \
     -d '{"content": "Updated content"}'
 ```
-![Screenshot](./screenshots/Screenshot_4.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_4.png" style="width: 62%" >
+</p>
 
 ```
 curl -X DELETE localhost:8080/api/v1/notes/6926b207ed6d88dd9154e3f9
 ```
-![Screenshot](./screenshots/Screenshot_5.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_5.png" style="width: 62%" >
+</p>
 
 ```
 go test -v ./internal/tests
 ```
-![Screenshot](./screenshots/Screenshot_6.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_6.png" style="width: 62%" >
+</p>
 
 ```
 curl -i localhost:8080/api/v1/notes\?q=update
 ```
-![Screenshot](./screenshots/Screenshot_7.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_7.png" style="width: 62%" >
+</p>
 
 ```
 curl -i -X POST localhost:8080/api/v1/notes \
@@ -211,17 +228,23 @@ curl -i -X POST localhost:8080/api/v1/notes \
             "expireTime": 15
         }'
 ```
-![Screenshot](./screenshots/Screenshot_8.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_8.png" style="width: 62%" >
+</p>
 
 ```
 curl -i localhost:8080/api/v1/notes\?after=6926c63a7beea8301be9bce8
 ```
-![Screenshot](./screenshots/Screenshot_9.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_9.png" style="width: 62%" >
+</p>
 
 ```
 curl -i localhost:8080/api/v1/notes/stats
 ```
-![Screenshot](./screenshots/Screenshot_10.png)
+<p align="center">
+  <img src="./screenshots/Screenshot_10.png" style="width: 62%" >
+</p>
 
 </details>
 
@@ -230,10 +253,10 @@ curl -i localhost:8080/api/v1/notes/stats
 ### Отладка и типовые ошибки
 - **`connection refused`** или **`i/o timeout`** — проверьте, что контейнер с Mongo запущен и порт проброшен
 
-- Аутентификация – используйте **`?authSource=admin`** и правильные `root/secret`
-- **`duplicate key error`** — сработал уникальный индекс **`title`**. `HTTP 409` возвращаем в `create`
-- **`invalid ObjectID`** — при неверном **`id`** возвращайте `404` (мы мапим ошибку на **`ErrNotFound`**)
-- **`CORS`** (если будете дергать из браузера) — добавьте **`middleware CORS`** либо тестируйте через `curl/Postman`
+- Аутентификация – используйте **`?authSource=admin`** и правильные root/secret
+- **`duplicate key error`** — сработал уникальный индекс **`title`**. HTTP 409 возвращаем в create
+- **`invalid ObjectID`** — при неверном **`id`** возвращайте 404 (мы мапим ошибку на **`ErrNotFound`**)
+- **`CORS`** (если будете дергать из браузера) — добавьте **`middleware CORS`** либо тестируйте через curl/Postman
 
 ---
 
