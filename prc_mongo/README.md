@@ -98,7 +98,7 @@
 > 2. Зададим:
 > - **`username`** — то же самое, что и **`MONGO_INITDB_ROOT_USERNAME`**
 > - **`password`** — то же самое, что и **`MONGO_INITDB_ROOT_USERNAME`**
-> - **`address`** — адрес сервера, на котором работает контейнер с **`MongoDB`**
+> - **`address`** — адрес сервера, на котором работает контейнер с MongoDB
 > - **`port`** — то же самое, что и **`external_port`**
 >
 > ```
