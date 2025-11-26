@@ -3,4 +3,7 @@
 /coverage.out
 *.log
 .DS_Store
-.vscode
+.env
+docker-compose.yml
+.dockerignore
+*.docx
