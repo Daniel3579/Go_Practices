@@ -7,4 +7,3 @@
 docker-compose.yml
 .dockerignore
 *.docx
-prc_gorm/export DB_DSN.txt
