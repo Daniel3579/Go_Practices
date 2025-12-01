@@ -1,0 +1,8 @@
+package core
+
+type User struct {
+	ID    int64
+	Email string
+	Role  string // "user" или "admin"
+	Hash  []byte
+}
