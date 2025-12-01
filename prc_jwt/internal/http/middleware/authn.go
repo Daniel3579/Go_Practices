@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"strings"
 
@@ -26,7 +27,15 @@ func AuthN(v jwt.Validator) func(http.Handler) http.Handler {
 				http.Error(w, "unauthorized", http.StatusUnauthorized)
 				return
 			}
-			ctx := context.WithValue(r.Context(), CtxClaimsKey, map[string]any(claims))
+
+			claimsMap := make(map[string]any)
+			for key, value := range claims {
+				claimsMap[key] = value
+			}
+
+			log.Printf("AuthN: token valid, user ID: %v, role: %v", claimsMap["sub"], claimsMap["role"])
+
+			ctx := context.WithValue(r.Context(), CtxClaimsKey, claimsMap)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})
 	}

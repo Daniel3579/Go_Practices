@@ -17,17 +17,20 @@ func Build(cfg config.Config) http.Handler {
 
 	// DI
 	userRepo := repo.NewUserMem() // храним заранее захэшированных юзеров (email, bcrypt)
-	jwtv := jwt.NewHS256(cfg.JWTSecret, cfg.JWTTTL)
+	jwtv := jwt.NewHS256(cfg.JWTSecret)
 	svc := core.NewService(userRepo, jwtv)
 
 	// Публичные маршруты
 	r.Post("/api/v1/login", svc.LoginHandler) // выдаёт JWT по email+password
+	r.Post("/api/v1/refresh", svc.RefreshHandler)
+	r.Post("/api/v1/logout", svc.LogoutHandler)
 
 	// Защищённые маршруты
 	r.Group(func(priv chi.Router) {
 		priv.Use(middleware.AuthN(jwtv))                 // аутентификация JWT
 		priv.Use(middleware.AuthZRoles("admin", "user")) // базовая RBAC
 		priv.Get("/api/v1/me", svc.MeHandler)            // вернёт профиль из токена
+		priv.Get("/api/v1/users/{id}", svc.GetUserHandler)
 	})
 
 	// Пример только для админов

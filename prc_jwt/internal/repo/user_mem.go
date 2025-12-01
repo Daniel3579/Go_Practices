@@ -39,3 +39,13 @@ func (r *UserMem) CheckPassword(email, pass string) (core.User, error) {
 	}
 	return u, nil
 }
+
+// Новый метод для получения пользователя по ID
+func (r *UserMem) GetUserByID(id int64) (core.User, error) {
+	for _, user := range r.users {
+		if user.ID == id {
+			return user, nil
+		}
+	}
+	return core.User{}, ErrNotFound
+}
