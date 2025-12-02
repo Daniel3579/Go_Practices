@@ -1,0 +1,19 @@
+package main
+
+import (
+	"log"
+	"net/http"
+
+	"example.com/prc_notes_api/internal/http"
+	"example.com/prc_notes_api/internal/http/handlers"
+	"example.com/prc_notes_api/internal/repo"
+)
+
+func main() {
+	repo := repo.NewNoteRepoMem()
+	h := &handlers.Handler{Repo: repo}
+	r := httpx.NewRouter(h)
+
+	log.Println("Server started at :8080")
+	log.Fatal(http.ListenAndServe(":8080", r))
+}
