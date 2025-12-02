@@ -23,14 +23,14 @@ TTL (Time-To-Live) — время жизни ключа
 
 ---
 
-> [!WARNING]
-> ## Сервер не запущен
+> [!TIP]
+> ## Сервер запущен
 > ### Реализованные эндпоинты
 > | Адрес | Описание |
 > |-|-|
-> | [my.domain:8080/set?key=test&value=hello](https://google.com) | Устанавливает ключ `test` и значение `hello` |
-> | [my.domain:8080/get?key=test](https://google.com) | Получает значени по ключу `test` |
-> | [my.domain:8080/ttl?key=test](https://google.com) | Получает время жизни ключа `test` |
+> | [my.domain/set?key=test&value=hello](http://79.164.43.106:2002/set?key=test&value=hello) | Устанавливает ключ `test` и значение `hello` |
+> | [my.domain/get?key=test](http://79.164.43.106:2002/get?key=test) | Получает значени по ключу `test` |
+> | [my.domain/ttl?key=test](http://79.164.43.106:2002/ttl?key=test) | Получает время жизни ключа `test` |
 
 ---
 
