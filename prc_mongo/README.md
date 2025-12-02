@@ -139,8 +139,8 @@ go run ./cmd/api
 
 ---
 
-> [!WARNING]
-> ## Сервер не запущен
+> [!TIP]
+> ## Сервер запущен
 > ### Реализованные эндпоинты
 > | Тип | Адрес | Заголовок | Тело |
 > |-|-|-|-|
@@ -153,8 +153,8 @@ go run ./cmd/api
 > | GET | my.domain:8080/api/v1/notes\?q={**`search`**} |
 > | GET | my.domain:8080/api/v1/notes\?limit={**`limit`**} |
 > | GET | my.domain:8080/api/v1/notes\?skip={**`skip`**} |
-> | GET | [my.domain:8080/api/v1/notes/stats](https://google.com) |
-> | GET | [my.domain:8080/api/v1/notes](https://google.com) |
+> | GET | [my.domain/api/v1/notes/stats](http://79.164.43.106:2004/api/v1/notes/stats) |
+> | GET | [my.domain/api/v1/notes](http://79.164.43.106:2004/api/v1/notes) |
 
 ---
 
