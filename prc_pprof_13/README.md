@@ -24,7 +24,7 @@
 
 ### Анализ профилей
 
-CPU 30 сек:
+**CPU 30 сек:**
 
 Flame Graph
 ![Screenshot](./screenshots/Screenshot_6.png)
@@ -35,7 +35,7 @@ Top
 Graph
 ![Screenshot](./screenshots/Screenshot_3.png)
 
-Heap:
+**Heap:**
 
 Inuse_space — сколько памяти удерживается
 ![Screenshot](./screenshots/Screenshot_5.png)
